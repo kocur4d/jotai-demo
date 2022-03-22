@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { Suspense } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import { Mileage } from "./Mileage";
+import { Vin } from "./VIN";
+import { Images } from "./Images";
+import { Results } from "./Results";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Suspense fallback={null}>
+      <Router>
+        <div style={{ padding: "20px" }}>
+          <Routes>
+            <Route path="/" element={<Mileage />} />
+            <Route path="/vin" element={<Vin />} />
+            <Route path="/images" element={<Images />} />
+            <Route path="/results" element={<Results />} />
+          </Routes>
+        </div>
+      </Router>
+    </Suspense>
   );
 }
 
